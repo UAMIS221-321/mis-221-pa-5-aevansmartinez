@@ -125,10 +125,11 @@ Select an option from below.
             int tempSessID = listings[foundInListing].GetListingID();
             DateTime tempDate = listings[foundInListing].GetDateAndTime();
             string tempTrainerName = listings[foundInListing].GetTrainerName();
+            int tempCost = listings[foundInListing].GetCost();
 
             int foundInTrainer = trainerutility.Find(tempTrainerName);
             int tempTrainerID = trainers[foundInTrainer].GetID();
-            bookingUtility.AddBooking(tempSessID, tempDate, tempTrainerName, tempTrainerID);
+            bookingUtility.AddBooking(tempSessID, tempDate, tempTrainerName, tempTrainerID, tempCost);
             
 
             

@@ -45,7 +45,7 @@ namespace mis_221_pa_5_aevansmartinez{
         }
 
         public override string ToString(){
-            return $"ID:{ID} | name: {name} | address: {mailingAdd} | email: {email}";   
+            return $"TRAINER ID:{ID} | NAME: {name} | ADDRESS: {mailingAdd} | EMAIL: {email}";   
         }
     }
 }

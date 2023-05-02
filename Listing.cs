@@ -51,10 +51,10 @@ namespace mis_221_pa_5_aevansmartinez{
             return $"{listingID}#{trainerName}#{dateAndTime}#{cost}#{status}";
         }
         public override string ToString(){
-            return $"Listing ID:{listingID} | Trainer Name: {trainerName} | Date & Time: {dateAndTime} | Cost: {cost} | Available: {status}";   
+            return $"LISTING ID:{listingID} | TRAINER: {trainerName} | DATE & TIME: {dateAndTime} | COST: {cost} | AVAILABLE: {status}";   
         }
         public string ToStringAvailable(){
-            return $"Listing ID:{listingID} | Trainer: {trainerName} | Date & Time: {dateAndTime} | Cost: {cost}";   
+            return $"LISTING ID:{listingID} | TRAINER: {trainerName} | DATE & TIME: {dateAndTime} | COST: {cost}";   
         }
     }
 }

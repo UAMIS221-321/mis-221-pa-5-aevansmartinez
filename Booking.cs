@@ -9,11 +9,11 @@ namespace mis_221_pa_5_aevansmartinez{
         private int trainerID;
         private string trainerName;
         private string status;
-
+        private int cost;
         public Booking(){
             //no args constructor
         }
-        public Booking(int sessionID, string cName, string cEmail, DateTime date, int trainerID, string tName, string status){
+        public Booking(int sessionID, string cName, string cEmail, DateTime date, int trainerID, string tName, string status, int cost){
             this.sessionID = sessionID;
             this.customerName = cName;
             this.customerEmail = cEmail;
@@ -21,6 +21,7 @@ namespace mis_221_pa_5_aevansmartinez{
             this.trainerID = trainerID;
             this.trainerName = tName;
             this.status = status;
+            this.cost = cost;
         }
         public void SetSessionID(int sID){
             this.sessionID = sID;
@@ -43,6 +44,9 @@ namespace mis_221_pa_5_aevansmartinez{
         public void SetStatus(string status){
             this.status = status;
         }
+        public void SetCost(int cost){
+            this.cost =cost;
+        }
         public int GetSessionID(){
             return sessionID;
         }
@@ -64,11 +68,15 @@ namespace mis_221_pa_5_aevansmartinez{
         public string GetStatus(){
             return status;
         }
-        public string ToFile(){
-            return $"{sessionID}#{customerName}#{customerEmail}#{sessionDate}#{trainerID}#{trainerName}#{status}";
+        public int GetCost(){
+            return cost;
         }
-        public string ToString(){
-            return $"{sessionID}#{customerName}#{customerEmail}#{sessionDate}#{trainerID}#{trainerName}#{status}";
+        public string ToFile(){
+            return $"{sessionID}#{customerName}#{customerEmail}#{sessionDate}#{trainerID}#{trainerName}#{status}#{cost}";
+        }
+        public override string ToString(){
+            return @$"SESSION ID: {sessionID} | CUSTOMER NAME: {customerName} | CUSTOMER EMAIL: {customerEmail}
+            SESSION DATE: {sessionDate} | TRAINER ID: {trainerID} | TRAINER NAME: {trainerName} | STATUS: {status} | COST: {cost}";
         }
     }
 }

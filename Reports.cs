@@ -68,8 +68,29 @@ namespace mis_221_pa_5_aevansmartinez
                 Console.WriteLine($"{lastCustomer}: {sessionCount} sessions");
         }
         public void HistoricalRevenue(){
-            
+            var revenueByMonthYear = new Dictionary<string, decimal>();
+            foreach (var booking in bookings)
+            {
+                if (booking.GetStatus() == "Completed")
+                {
+                    string monthYear = booking.GetSessionDate().ToString("yyyy-MM");
+                    if (!revenueByMonthYear.ContainsKey(monthYear))
+                    {
+                        revenueByMonthYear[monthYear] = 0;
+                    }
+                    revenueByMonthYear[monthYear] += booking.GetCost();
+                }
+            }
+
+            Console.WriteLine("Revenue Report:");
+            foreach (var kvp in revenueByMonthYear)
+            {
+                Console.WriteLine($"Month/Year: {kvp.Key} Total Revenue: {kvp.Value:C}");
+            }
         }
+
+    
+
 
     }
 }

@@ -12,12 +12,12 @@ namespace mis_221_pa_5_aevansmartinez
             string line = inFile.ReadLine();
             while (line != null){
                 string[] temp = line.Split('#');
-                bookings.Add(new Booking(int.Parse(temp[0]), temp[1], temp[2], DateTime.Parse(temp[3]), int.Parse(temp[4]), temp[5], temp[6]));
+                bookings.Add(new Booking(int.Parse(temp[0]), temp[1], temp[2], DateTime.Parse(temp[3]), int.Parse(temp[4]), temp[5], temp[6], int.Parse(temp[7])));
                 line = inFile.ReadLine();
             }
             inFile.Close();
         }
-        public void AddBooking(int sessionID, DateTime date, string tName, int tID){ 
+        public void AddBooking(int sessionID, DateTime date, string tName, int tID, int cost){ 
             Booking newBooking = new Booking();
 
             newBooking.SetSessionID(sessionID);
@@ -31,7 +31,8 @@ namespace mis_221_pa_5_aevansmartinez
             newBooking.SetTrainerName(tName);
             newBooking.SetTrainerID(tID);
             
-            newBooking.SetStatus("Booked");     
+            newBooking.SetStatus("Booked");    
+            newBooking.SetCost(cost); 
             
             bookings.Add(newBooking);
             Save(); 
