@@ -41,11 +41,7 @@ Select an option from below.
             else if (selectedIndex == 3) RunReports();
             else Exit();
         }
-        /* optimize me*/private void ManageTrainerData(){
-            //base line done, could use some cleaning up
-            // "what field do you wish to edit? WOULD BE REALLY GOOD
-            // when edit & delete re-route if not found
-            // enter name or ID on edit & delete
+        private void ManageTrainerData(){
             Clear();
 
             string tempPrompt = "What would you like to do:";
@@ -63,9 +59,7 @@ Select an option from below.
             ReadKey(true);
             ManageTrainerData();
         }
-        /* optimize me*/ private void ManageListingData(){
-            // when adding a listing menu to select which trainer or to add a new trainer
-            // more guided info when editing or deleting, especially with DateTime
+        private void ManageListingData(){
             Clear();
 
             string tempPrompt = "What would you like to do:";
@@ -127,20 +121,24 @@ Select an option from below.
             int tempTrainerID = trainers[foundInTrainer].GetID();
             bookingUtility.AddBooking(tempSessID, tempDate, tempTrainerName, tempTrainerID, tempCost);
             
-            listings.RemoveAt(foundInListing);
+            listings[foundInListing].ChangeStatus("Booked");
+            listingUtility.Save();
         }
         /* FIX ME*/private void RunReports(){
             Reports report = new Reports(trainers, listings, bookings);
             Clear();
 
             string tempPrompt = "What report would you like to see:";
-            List<string> tempOptions = new List<string>{"Individual Customer Sessions", "Historical Customer Sessions", "Historical Revenue", "Return to Main Menu"};
+            List<string> tempOptions = new List<string>{"Individual Customer Sessions", "Historical Customer Sessions", "Historical Revenue"};
+            tempOptions.Add("Individual Trainer Listings & Bookings");
+            tempOptions.Add("Return to Main Menu");
             Menu reportMenu = new Menu(tempPrompt, tempOptions);
             int selectedIndex = reportMenu.Run();
 
             if (selectedIndex == 0) report.IndividualCustomer();
             else if (selectedIndex == 1) report.HistoricalCustomer();
             else if (selectedIndex == 2) report.HistoricalRevenue();
+            else if (selectedIndex == 3) report.SeeSpecificTrainerInfo();
             else RunMainMenu();
 
             WriteLine("Press any key to continue");

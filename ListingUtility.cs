@@ -72,7 +72,7 @@ namespace mis_221_pa_5_aevansmartinez{
                 Save();
             }
         }
-        private void Save(){    /*DONE*/
+        public void Save(){    /*DONE*/
             StreamWriter outFile = new StreamWriter("listings.txt");
             for (int i =0; i < listings.Count(); i++){
                 outFile.WriteLine(listings[i].ToFile());

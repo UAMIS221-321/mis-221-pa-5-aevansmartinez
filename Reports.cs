@@ -23,22 +23,6 @@ namespace mis_221_pa_5_aevansmartinez
             }
             System.Console.WriteLine($"This customer has attended {count} sessions total");
         }
-        /*
-        public void HistoricalCustomer(){
-            public void Sort(){
-            for (int i =0 ; i < Book.GetCount() - 1; i++){
-                int smaller = i;
-                for (int j = i+1; j < Book.GetCount(); j++){
-                    if ((books[j].GetGenre().CompareTo(books[smaller].GetGenre()) < 0) ||
-                     (books[j].GetGenre() == books[smaller].GetGenre() && books[j].GetPages() < books[smaller].GetPages())){
-                        smaller = j;
-                    }
-                    if (smaller != i) Swap(smaller, i);
-                }
-            }
-        }
-            System.Console.WriteLine($"This customer has attended {count} sessions total");
-        } */
         public void HistoricalCustomer(){
             // Sort the bookings first by customer name and then by date
             bookings.Sort((a, b) =>
@@ -88,6 +72,31 @@ namespace mis_221_pa_5_aevansmartinez
                 Console.WriteLine($"Month/Year: {kvp.Key} Total Revenue: {kvp.Value:C}");
             }
         }
+        public void SeeSpecificTrainerInfo(){
+            string tempPrompt = "Select a trainer:";
+            List<string> tempOptions = new List<string>();
+            foreach (Trainer trainer in trainers){
+                tempOptions.Add(trainer.GetName());
+            }
+            Menu selectTrainerMenu = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = selectTrainerMenu.Run();
 
+            string tName = trainers[selectedIndex].GetName(); 
+
+            System.Console.WriteLine($"All Listings by {tName}: ");
+            foreach (Listing listing in listings){
+                if (listing.GetTrainerName() == tName){
+                    System.Console.WriteLine(listing.ToString());
+                }
+            }
+            System.Console.WriteLine($"\nAll Transactions by {tName}: ");
+            foreach (Booking booking in bookings){
+                if (booking.GetTrainerName() == tName){
+                    System.Console.WriteLine(booking.ToString());
+                }
+            }
+
+
+        }
     }
 }

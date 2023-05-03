@@ -59,10 +59,16 @@ namespace mis_221_pa_5_aevansmartinez{
             }
         }
         public void SetStatus(){
-            string tempPrompt = "Please select the sta:";
-            List<string> tempOptions = new List<string>();
-            System.Console.WriteLine("Please enter the status: ");
-            this.status = Console.ReadLine();
+            string tempPrompt = "Please select the status:";
+            List<string> tempOptions = new List<string>(){"Available", "Booked"};
+            Menu selectStatusMenu = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = selectStatusMenu.Run();
+            
+            if (selectedIndex == 0) this.status = "Available";
+            else this.status = "Booked";
+        }
+        public void ChangeStatus(string status){
+            this.status = status;
         }
         public void SetDateAndTime (){
             System.Console.WriteLine("Please enter the date: ");
