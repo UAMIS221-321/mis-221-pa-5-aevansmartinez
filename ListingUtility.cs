@@ -18,23 +18,14 @@ namespace mis_221_pa_5_aevansmartinez{
         }
         public void AddListing(){ 
             Listing newListing = new Listing();
-            int temp;
 
             newListing.SetListingID();
-
-            System.Console.WriteLine("Please enter trainer name: ");
-            newListing.SetTrainerName(Console.ReadLine());
-            
-            System.Console.WriteLine("Please enter the cost: ");
+            newListing.SetTrainerName();
             newListing.SetCost();
-            
-            System.Console.WriteLine("Please enter the status: ");
-            newListing.SetAvaliable(Console.ReadLine());
-            
-            System.Console.WriteLine("Please enter the date and time: ");
+            newListing.SetStatus();
             newListing.SetDateAndTime();
-            
             listings.Add(newListing);
+
             Save(); 
         }
         public void EditListing(){
@@ -43,18 +34,14 @@ namespace mis_221_pa_5_aevansmartinez{
             int foundIndex = Find(searchVal);
             if (foundIndex != -1){
                 listings[foundIndex].SetListingID();
-                System.Console.WriteLine("Please enter trainer name: ");
-                listings[foundIndex].SetTrainerName(Console.ReadLine());  
+                listings[foundIndex].SetTrainerName();  
                 listings[foundIndex].SetCost();
-                System.Console.WriteLine("Please enter the status: ");
-                listings[foundIndex].SetAvaliable(Console.ReadLine());
-                System.Console.WriteLine("Please enter the date and time: ");
+                listings[foundIndex].SetStatus();
                 listings[foundIndex].SetDateAndTime();
                 Save();
             }
             else {
                 System.Console.WriteLine("Listing not found.");
-                EditListing();
             }
         }
         public void DeleteListing(){
@@ -67,13 +54,9 @@ namespace mis_221_pa_5_aevansmartinez{
                 Save();
             }
             else {
-                System.Console.WriteLine("Trainer not found.");
+                System.Console.WriteLine("Trainer not found; Please try");
                 DeleteListing();
             }
-        }
-        public void UpdateListingStatus(int index, string status){
-            listings[index].SetAvaliable(status);
-                Save();
         }
         private void Save(){
             StreamWriter outFile = new StreamWriter("listings.txt");
@@ -89,13 +72,6 @@ namespace mis_221_pa_5_aevansmartinez{
                 }
             }
             return -1;
-        }
-        private int IntTryParseListingID(){
-            int x;
-            if (int.TryParse(Console.ReadLine(), out x)) {
-                return x;
-            }
-            else return -1;
         }
         public void PrintAllListings(){
             Console.Clear();

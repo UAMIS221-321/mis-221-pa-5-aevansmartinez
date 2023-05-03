@@ -22,10 +22,8 @@ namespace mis_221_pa_5_aevansmartinez
 
             newBooking.SetSessionID(sessionID);
 
-            System.Console.WriteLine("Please enter customer name: ");
-            newBooking.SetCustomerName(Console.ReadLine());
-            System.Console.WriteLine("Please enter customer email: ");
-            newBooking.SetCustomerEmail(Console.ReadLine());
+            newBooking.SetCustomerName();
+            newBooking.SetCustomerEmail();
 
             newBooking.SetSessionDate(date);
             newBooking.SetTrainerName(tName);
@@ -51,7 +49,6 @@ namespace mis_221_pa_5_aevansmartinez
                 System.Console.WriteLine(bookings[i].ToString());
             }
         }
-
         private void UpdateStatusForAll(){
             foreach(Booking booking in bookings){
                 if (booking.GetSessionDate() <= DateTime.Now){

@@ -32,8 +32,9 @@ namespace mis_221_pa_5_aevansmartinez{
                 SetListingID();
             }
         }
-        public void SetTrainerName(string trainerName){
-            this.trainerName = trainerName;
+        public void SetTrainerName(){
+            System.Console.WriteLine("Please enter trainer name: ");
+            this.trainerName = Console.ReadLine();
         }
         public void SetCost(){
             System.Console.WriteLine("Please enter the cost: ");
@@ -50,8 +51,9 @@ namespace mis_221_pa_5_aevansmartinez{
                 SetCost();
             }
         }
-        public void SetAvaliable(string status){
-            this.status = status;
+        public void SetStatus(){
+            System.Console.WriteLine("Please enter the status: ");
+            this.status = Console.ReadLine();
         }
         public void SetDateAndTime (){
             System.Console.WriteLine("Please enter the date: ");

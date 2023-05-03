@@ -26,11 +26,13 @@ namespace mis_221_pa_5_aevansmartinez{
         public void SetSessionID(int sID){
             this.sessionID = sID;
         }
-        public void SetCustomerName(string cName){
-            this.customerName = cName;
+        public void SetCustomerName(){
+            System.Console.WriteLine("Please enter customer name: ");
+            this.customerName = Console.ReadLine();
         }
-        public void SetCustomerEmail(string cEmail){
-            this.customerEmail = cEmail;
+        public void SetCustomerEmail(){
+            System.Console.WriteLine("Please enter customer email: ");
+            this.customerEmail = Console.ReadLine();
         }
         public void SetSessionDate(DateTime date){
             this.sessionDate = date;

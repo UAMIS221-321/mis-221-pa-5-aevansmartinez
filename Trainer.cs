@@ -16,17 +16,32 @@ namespace mis_221_pa_5_aevansmartinez{
             this.mailingAdd = mail;
             this.email = email;
         }
-        public void SetID(int ID){
-            this.ID = ID;
+        public void SetID(){
+            System.Console.WriteLine("Please enter the trainer ID: ");
+            int x;
+            if (int.TryParse(Console.ReadLine(), out x)) {
+                if (x <= 100 || x >= 1000) {
+                    System.Console.WriteLine("The trainer ID must be an int value between 100 and 999");
+                    SetID();
+                }
+                else this.ID = x;
+            }
+            else {
+                System.Console.WriteLine("This is not a valid listing ID; please try again.");     
+                SetID();
+            }
         }
-        public void SetName(string name){
-            this.name = name;
+        public void SetName(){
+            System.Console.WriteLine("Please enter trainer name: ");
+            this.name = Console.ReadLine();
         }
-        public void SetMailing(string mailingAdd){
-            this.mailingAdd = mailingAdd;
+        public void SetMailing(){
+            System.Console.WriteLine("Please enter the mailing address: ");
+            this.mailingAdd = Console.ReadLine();
         }
-        public void SetEmail(string email){
-            this.email = email;
+        public void SetEmail(){
+            System.Console.WriteLine("Please enter the email: ");
+            this.email = Console.ReadLine();
         }
         public int GetID(){
             return ID;

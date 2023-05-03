@@ -18,17 +18,12 @@ namespace mis_221_pa_5_aevansmartinez{
         }
         public void AddTrainer(){
             Trainer newbie = new Trainer();
-
-            System.Console.WriteLine("\nPlease enter the ID: ");
-            newbie.SetID(int.Parse(Console.ReadLine()));
-            System.Console.WriteLine("Please enter the name: ");
-            newbie.SetName(Console.ReadLine());
-            System.Console.WriteLine("Please enter the mailing address: ");
-            newbie.SetMailing(Console.ReadLine());
-            System.Console.WriteLine("Please enter the email: ");
-            newbie.SetEmail(Console.ReadLine());
-
+            newbie.SetID();
+            newbie.SetName();
+            newbie.SetMailing();
+            newbie.SetEmail();
             trainers.Add(newbie);
+            
             Save();
         }
         public void EditTrainer(){
@@ -37,14 +32,10 @@ namespace mis_221_pa_5_aevansmartinez{
             string searchVal = Console.ReadLine();
             int foundIndex = Find(searchVal);
             if (foundIndex != -1){
-                System.Console.WriteLine("Please enter the ID: ");
-                trainers[foundIndex].SetID(int.Parse(Console.ReadLine()));
-                System.Console.WriteLine("Please enter the name: ");
-                trainers[foundIndex].SetName(Console.ReadLine());
-                System.Console.WriteLine("Please enter the mailing address: ");
-                trainers[foundIndex].SetMailing(Console.ReadLine());
-                System.Console.WriteLine("Please enter the email: ");
-                trainers[foundIndex].SetEmail(Console.ReadLine());
+                trainers[foundIndex].SetID();
+                trainers[foundIndex].SetName();
+                trainers[foundIndex].SetMailing();
+                trainers[foundIndex].SetEmail();
                 Save();
             }
             else System.Console.WriteLine("Trainer not found.");
