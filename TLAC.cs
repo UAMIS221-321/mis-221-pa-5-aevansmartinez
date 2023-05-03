@@ -127,7 +127,7 @@ Select an option from below.
             int tempTrainerID = trainers[foundInTrainer].GetID();
             bookingUtility.AddBooking(tempSessID, tempDate, tempTrainerName, tempTrainerID, tempCost);
             
-            listingUtility.UpdateListingStatus(foundInListing, "Booked");
+            listings.RemoveAt(foundInListing);
         }
         /* FIX ME*/private void RunReports(){
             Reports report = new Reports(trainers, listings, bookings);

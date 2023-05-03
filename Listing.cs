@@ -10,27 +10,59 @@ namespace mis_221_pa_5_aevansmartinez{
             //no args constructor
         }
         public Listing(int ID, string tName, DateTime dateAndTime, int cost, string status ){
-            //testing out the datetime variable
             this.listingID = ID;
             this.trainerName = tName;
             this.cost = cost;
             this.status = status;
             this.dateAndTime = dateAndTime;
         }
-        public void SetListingID(int ID){
-            this.listingID = ID;
+        
+        public void SetListingID(){
+            System.Console.WriteLine("Please enter the listing ID: ");
+            int x;
+            if (int.TryParse(Console.ReadLine(), out x)) {
+                if (x <= 100 || x >= 1000) {
+                    System.Console.WriteLine("The listing ID must be an int value between 100 and 999");
+                    SetListingID();
+                }
+                else this.listingID = x;
+            }
+            else {
+                System.Console.WriteLine("This is not a valid listing ID; please try again.");     
+                SetListingID();
+            }
         }
         public void SetTrainerName(string trainerName){
             this.trainerName = trainerName;
         }
-        public void SetCost(int cost){
-            this.cost = cost;
+        public void SetCost(){
+            System.Console.WriteLine("Please enter the cost: ");
+            int x;
+            if (int.TryParse(Console.ReadLine(), out x)) {
+                if (x <= 0 || x > 200) {
+                    System.Console.WriteLine("The cost must be an int value between 1 and 200");
+                    SetCost();
+                }
+                else this.cost = x;
+            }
+            else {
+                System.Console.WriteLine("This is not a valid cost; please try again.");
+                SetCost();
+            }
         }
         public void SetAvaliable(string status){
             this.status = status;
         }
-        public void SetDateAndTime (DateTime dateAndTime){
-            this.dateAndTime = dateAndTime;
+        public void SetDateAndTime (){
+            System.Console.WriteLine("Please enter the date: ");
+            DateTime x;
+            if (DateTime.TryParse(Console.ReadLine(), out x)) {
+                this.dateAndTime = x;
+            }
+            else {
+                System.Console.WriteLine("This is not a date or time; please try again.");
+                SetDateAndTime();
+            }
         }
         public int GetListingID(){
             return listingID;

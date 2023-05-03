@@ -18,17 +18,21 @@ namespace mis_221_pa_5_aevansmartinez{
         }
         public void AddListing(){ 
             Listing newListing = new Listing();
+            int temp;
 
-            System.Console.WriteLine("Please enter listing ID: ");
-            newListing.SetListingID(int.Parse(Console.ReadLine()));
+            newListing.SetListingID();
+
             System.Console.WriteLine("Please enter trainer name: ");
             newListing.SetTrainerName(Console.ReadLine());
+            
             System.Console.WriteLine("Please enter the cost: ");
-            newListing.SetCost(int.Parse(Console.ReadLine()));
+            newListing.SetCost();
+            
             System.Console.WriteLine("Please enter the status: ");
             newListing.SetAvaliable(Console.ReadLine());
+            
             System.Console.WriteLine("Please enter the date and time: ");
-            newListing.SetDateAndTime(DateTime.Parse(Console.ReadLine()));
+            newListing.SetDateAndTime();
             
             listings.Add(newListing);
             Save(); 
@@ -38,16 +42,14 @@ namespace mis_221_pa_5_aevansmartinez{
             int searchVal = int.Parse(Console.ReadLine());
             int foundIndex = Find(searchVal);
             if (foundIndex != -1){
-                System.Console.WriteLine("Please enter listing ID: ");
-                listings[foundIndex].SetListingID(int.Parse(Console.ReadLine()));
+                listings[foundIndex].SetListingID();
                 System.Console.WriteLine("Please enter trainer name: ");
-                listings[foundIndex].SetTrainerName(Console.ReadLine());
-                System.Console.WriteLine("Please enter the cost: ");
-                listings[foundIndex].SetCost(int.Parse(Console.ReadLine()));
+                listings[foundIndex].SetTrainerName(Console.ReadLine());  
+                listings[foundIndex].SetCost();
                 System.Console.WriteLine("Please enter the status: ");
                 listings[foundIndex].SetAvaliable(Console.ReadLine());
                 System.Console.WriteLine("Please enter the date and time: ");
-                listings[foundIndex].SetDateAndTime(DateTime.Parse(Console.ReadLine()));
+                listings[foundIndex].SetDateAndTime();
                 Save();
             }
             else {
@@ -87,6 +89,13 @@ namespace mis_221_pa_5_aevansmartinez{
                 }
             }
             return -1;
+        }
+        private int IntTryParseListingID(){
+            int x;
+            if (int.TryParse(Console.ReadLine(), out x)) {
+                return x;
+            }
+            else return -1;
         }
         public void PrintAllListings(){
             Console.Clear();
