@@ -35,6 +35,18 @@ namespace mis_221_pa_5_aevansmartinez
             bookings.Add(newBooking);
             Save(); 
         }
+        public void CancelBooking(){
+            string tempPrompt = "Which booking do you want to cancel";
+            List<string> tempOptions = new List<string>();
+            foreach (Booking booking in bookings){
+                tempOptions.Add(booking.ToString());
+            }
+            Menu chose = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = chose.Run();
+
+            bookings[selectedIndex].SetStatus("Cancelled");
+            Save();
+        }
         private void Save(){
             StreamWriter outFile = new StreamWriter("transactions.txt");
             for (int i =0; i < bookings.Count(); i++){

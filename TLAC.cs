@@ -81,7 +81,7 @@ Select an option from below.
             Clear();
 
             string tempPrompt = "What would you like to do:";
-            List<string> tempOptions = new List<string>{"View Available Sessions", "View All Transactions", "Book a Session", "Return to Main Menu"};
+            List<string> tempOptions = new List<string>{"View Available Sessions", "View All Transactions", "Book a Session", "Cancel a Booking", "Return to Main Menu"};
             
             Menu bookingMenu = new Menu(tempPrompt, tempOptions);
             int selectedIndex = bookingMenu.Run();
@@ -89,6 +89,7 @@ Select an option from below.
             if (selectedIndex == 0) listingUtility.ViewAvailableSessions();
             else if (selectedIndex == 1) bookingUtility.ViewAllTransactions();
             else if (selectedIndex == 2) BookSession();
+            else if (selectedIndex == 3) bookingUtility.CancelBooking();
             else RunMainMenu();
 
             WriteLine("Press any key to continue");
@@ -124,7 +125,7 @@ Select an option from below.
             listings[foundInListing].ChangeStatus("Booked");
             listingUtility.Save();
         }
-        /* FIX ME*/private void RunReports(){
+        private void RunReports(){
             Reports report = new Reports(trainers, listings, bookings);
             Clear();
 
