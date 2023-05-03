@@ -32,9 +32,16 @@ namespace mis_221_pa_5_aevansmartinez{
                 SetListingID();
             }
         }
-        public void SetTrainerName(){
-            System.Console.WriteLine("Please enter trainer name: ");
-            this.trainerName = Console.ReadLine();
+        public void SetTrainerName(List<Trainer> trainers){
+            string tempPrompt = "Select a trainer:";
+            List<string> tempOptions = new List<string>();
+            foreach (Trainer trainer in trainers){
+                tempOptions.Add(trainer.GetName());
+            }
+            Menu selectTrainerMenu = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = selectTrainerMenu.Run();
+            
+            this.trainerName = trainers[selectedIndex].GetName();
         }
         public void SetCost(){
             System.Console.WriteLine("Please enter the cost: ");
@@ -52,6 +59,8 @@ namespace mis_221_pa_5_aevansmartinez{
             }
         }
         public void SetStatus(){
+            string tempPrompt = "Please select the sta:";
+            List<string> tempOptions = new List<string>();
             System.Console.WriteLine("Please enter the status: ");
             this.status = Console.ReadLine();
         }

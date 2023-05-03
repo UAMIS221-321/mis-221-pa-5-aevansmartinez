@@ -1,12 +1,14 @@
 namespace mis_221_pa_5_aevansmartinez{
-    //CLASS DONE.....PRETTY SURE
+    /* CLASS DONE, REALLY THIS TIME*/
     public class ListingUtility
     {
         private List<Listing> listings = new List<Listing>();
-        public ListingUtility(List<Listing> listings){
+        private List<Trainer> trainers = new List<Trainer>();
+        public ListingUtility(List<Listing> listings, List<Trainer> trainers){  /*DONE*/
             this.listings = listings;
+            this.trainers = trainers;
         }
-        public void GetAllListingsFromFile(){
+        public void GetAllListingsFromFile(){   /*DONE*/
             StreamReader inFile = new StreamReader("listings.txt");
             string line = inFile.ReadLine();
             while (line != null){
@@ -16,11 +18,11 @@ namespace mis_221_pa_5_aevansmartinez{
             }
             inFile.Close();
         }
-        public void AddListing(){ 
+        public void AddListing(){   /*DONE*/
             Listing newListing = new Listing();
 
             newListing.SetListingID();
-            newListing.SetTrainerName();
+            newListing.SetTrainerName(trainers);
             newListing.SetCost();
             newListing.SetStatus();
             newListing.SetDateAndTime();
@@ -28,44 +30,56 @@ namespace mis_221_pa_5_aevansmartinez{
 
             Save(); 
         }
-        public void EditListing(){
-            System.Console.WriteLine("What listing do you want to edit? Enter the ID: ");
-            int searchVal = int.Parse(Console.ReadLine());
-            int foundIndex = Find(searchVal);
-            if (foundIndex != -1){
-                listings[foundIndex].SetListingID();
-                listings[foundIndex].SetTrainerName();  
-                listings[foundIndex].SetCost();
-                listings[foundIndex].SetStatus();
-                listings[foundIndex].SetDateAndTime();
+        public void EditListing(){  /*DONE*/
+          //Menu for chosing which listing to edit
+            string tempPrompt = "What trainer would you like to edit:";
+            List<string> tempOptions = new List<string>();
+            foreach (Listing listing in listings){
+                tempOptions.Add(listing.ToString());
+            }
+            tempOptions.Add("Cancel");
+            Menu choseListing = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = choseListing.Run();
+
+          //menu for chosing which field to edit for the trainer
+            string tempPrompt2 = "What field would you like to edit:";
+            List<string> tempOptions2 = new List<string>{"Listing ID", "Trainer Name", "Cost", "Status", "Date & Time"};
+            Menu choseField = new Menu(tempPrompt2, tempOptions2);
+            int selectedIndex2 = choseField.Run();
+            
+          //actually does the edits
+            if (selectedIndex < listings.Count()){  //checks to make sure user did not select cancel
+                if (selectedIndex2 == 0) listings[selectedIndex].SetListingID();
+                else if (selectedIndex2 == 1) listings[selectedIndex].SetTrainerName(trainers);
+                else if (selectedIndex2 == 2) listings[selectedIndex].SetCost();
+                else if (selectedIndex2 == 3) listings[selectedIndex].SetStatus();
+                else listings[selectedIndex].SetDateAndTime();
                 Save();
             }
-            else {
-                System.Console.WriteLine("Listing not found.");
-            }
         }
-        public void DeleteListing(){
-            //error handling done
-            System.Console.WriteLine("What listing do you want to delete? Enter the ID: ");
-            int searchVal = int.Parse(Console.ReadLine());
-            int foundIndex = Find(searchVal);
-            if (foundIndex != -1){
-                listings.RemoveAt(foundIndex);
+        public void DeleteListing(){    /*DONE*/
+            string tempPrompt = "What listing would you like to delete: (Press cancel to return to Listing menu)";
+            List<string> tempOptions = new List<string>();
+            foreach (Listing listing in listings){
+                tempOptions.Add(listing.ToString());
+            }
+            tempOptions.Add("Cancel");
+            Menu deleteMenu = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = deleteMenu.Run();
+
+            if (selectedIndex < listings.Count()){
+                listings.RemoveAt(selectedIndex);
                 Save();
             }
-            else {
-                System.Console.WriteLine("Trainer not found; Please try");
-                DeleteListing();
-            }
         }
-        private void Save(){
+        private void Save(){    /*DONE*/
             StreamWriter outFile = new StreamWriter("listings.txt");
             for (int i =0; i < listings.Count(); i++){
                 outFile.WriteLine(listings[i].ToFile());
             }
             outFile.Close();
         }
-        public int Find(int ID){
+        public int Find(int ID){    /*DONE*/
             for (int i = 0; i< listings.Count(); i++){
                 if (listings[i].GetListingID() == ID){
                     return i;
@@ -73,13 +87,13 @@ namespace mis_221_pa_5_aevansmartinez{
             }
             return -1;
         }
-        public void PrintAllListings(){
+        public void PrintAllListings(){     /*DONE*/
             Console.Clear();
             for (int i = 0; i< listings.Count(); i++){
                 System.Console.WriteLine(listings[i].ToString());
             }
         }
-        public void ViewAvailableSessions(){
+        public void ViewAvailableSessions(){    /*DONE*/
             Console.Clear();
             for (int i = 0; i< listings.Count(); i++){
                 if (listings[i].GetAvailable() == "Available"){

@@ -1,5 +1,5 @@
 namespace mis_221_pa_5_aevansmartinez{
-    //CLASS DONE.....PRETTY SURE
+    /* CLASS DONE, REALLY THIS TIME*/
     public class Trainer {
         private int ID;
         private string name;
@@ -41,7 +41,9 @@ namespace mis_221_pa_5_aevansmartinez{
         }
         public void SetEmail(){
             System.Console.WriteLine("Please enter the email: ");
-            this.email = Console.ReadLine();
+            string temp = Console.ReadLine();
+            if (temp.Contains("@")==false) SetEmail();
+            else this.email = temp;
         }
         public int GetID(){
             return ID;

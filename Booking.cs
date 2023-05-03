@@ -31,9 +31,10 @@ namespace mis_221_pa_5_aevansmartinez{
             this.customerName = Console.ReadLine();
         }
         public void SetCustomerEmail(){
-            System.Console.WriteLine("Please enter customer email: ");
-            if (Console.ReadLine().Contains("@")==false) SetCustomerEmail();
-            else this.customerEmail = Console.ReadLine();
+            System.Console.WriteLine("Please enter the customer email: ");
+            string temp = Console.ReadLine();
+            if (temp.Contains("@")==false) SetCustomerEmail();
+            else this.customerEmail = temp;
         }
         public void SetSessionDate(DateTime date){
             this.sessionDate = date;

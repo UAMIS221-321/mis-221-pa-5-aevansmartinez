@@ -58,13 +58,5 @@ namespace mis_221_pa_5_aevansmartinez
             Save();
         }
         
-        /*FIX ME:private int Find(int ID){
-            for (int i = 0; i< bookings.Count(); i++){
-                if (bookings[i].GetListingID() == ID){
-                    return i;
-                }
-            }
-            return -1;
-        } */
     }
 }

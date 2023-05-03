@@ -12,7 +12,7 @@ namespace mis_221_pa_5_aevansmartinez
         static List<Trainer> trainers = new List<Trainer>();
         static TrainerUtility trainerUtility = new TrainerUtility(trainers);
         static List<Listing> listings = new List<Listing>();
-        static ListingUtility listingUtility = new ListingUtility(listings);
+        static ListingUtility listingUtility = new ListingUtility(listings, trainers);
         static List<Booking> bookings = new List<Booking>();
         static BookingUtility bookingUtility = new BookingUtility(bookings);
         public void SetUp(){

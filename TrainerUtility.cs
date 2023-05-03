@@ -1,9 +1,9 @@
 namespace mis_221_pa_5_aevansmartinez{
-    //CLASS DONE.....PRETTY SURE
+    /* CLASS DONE, REALLY THIS TIME*/
     public class TrainerUtility
     {
         private List<Trainer> trainers = new List<Trainer>();
-        public TrainerUtility(List<Trainer> trainers){
+        public TrainerUtility(List<Trainer> trainers){  /*DONE*/
             this.trainers = trainers;
         }
         public void GetAllTrainerssFromFile(){
@@ -16,7 +16,7 @@ namespace mis_221_pa_5_aevansmartinez{
             }
             inFile.Close();
         }
-        public void AddTrainer(){
+        public void AddTrainer(){   /*DONE*/
             Trainer newbie = new Trainer();
             newbie.SetID();
             newbie.SetName();
@@ -26,40 +26,55 @@ namespace mis_221_pa_5_aevansmartinez{
             
             Save();
         }
-        public void EditTrainer(){
-            // extra/to fix: be able to update single value without editing the rest
-            System.Console.WriteLine("What trainer do you want to update? Enter name: ");
-            string searchVal = Console.ReadLine();
-            int foundIndex = Find(searchVal);
-            if (foundIndex != -1){
-                trainers[foundIndex].SetID();
-                trainers[foundIndex].SetName();
-                trainers[foundIndex].SetMailing();
-                trainers[foundIndex].SetEmail();
+        public void EditTrainer(){  /*DONE*/
+            //Menu for chosing which trainer to edit
+            string tempPrompt = "What trainer would you like to edit:";
+            List<string> tempOptions = new List<string>();
+            foreach (Trainer trainer in trainers){
+                tempOptions.Add(trainer.ToString());
+            }
+            tempOptions.Add("Cancel");
+            Menu choseTrainer = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = choseTrainer.Run();
+            
+            //menu for chosing which field to edit for the trainer
+            string tempPrompt2 = "What field would you like to edit:";
+            List<string> tempOptions2 = new List<string>{"ID", "Name", "Mailing Address", "Email"};
+            Menu choseField = new Menu(tempPrompt2, tempOptions2);
+            int selectedIndex2 = choseField.Run();
+
+            if (selectedIndex < trainers.Count()){  //checks to make sure user did not select cancel
+                if (selectedIndex2 == 0) trainers[selectedIndex].SetID();
+                else if (selectedIndex2 == 1) trainers[selectedIndex].SetName();
+                else if (selectedIndex2 == 2) trainers[selectedIndex].SetMailing();
+                else trainers[selectedIndex].SetEmail();
                 Save();
             }
-            else System.Console.WriteLine("Trainer not found.");
+            
         }
-        public void DeleteTrainer(){
-            System.Console.WriteLine("What trainer do you want to delete? Enter name: ");
-            string searchVal = Console.ReadLine();
-            int foundIndex = Find(searchVal);
-            if (foundIndex != -1){
-                trainers.RemoveAt(foundIndex);
+        public void DeleteTrainer(){   /*DONE*/
+            string tempPrompt = "What trainer would you like to delete: (Press cancel to return to Listing menu)";
+            List<string> tempOptions = new List<string>();
+            foreach (Trainer trainer in trainers){
+                tempOptions.Add(trainer.ToString());
+            }
+            tempOptions.Add("Cancel");
+            Menu deleteMenu = new Menu(tempPrompt, tempOptions);
+            int selectedIndex = deleteMenu.Run();
+
+            if (selectedIndex < trainers.Count()){
+                trainers.RemoveAt(selectedIndex);
                 Save();
-            }
-            else {
-                System.Console.WriteLine("Trainer not found.");
-            }
+             }
         }
-        private void Save(){
+        private void Save(){    /*DONE*/
             StreamWriter outFile = new StreamWriter("trainers.txt");
             for (int i =0; i < trainers.Count(); i++){
                 outFile.WriteLine(trainers[i].ToFile());
             }
             outFile.Close();
         }
-        public int Find(string searchVal){
+        public int Find(string searchVal){  /*DONE*/
             for (int i =0; i< trainers.Count(); i++){
                 if (trainers[i].GetName().ToUpper() == searchVal.ToUpper()){
                     return i;
@@ -67,7 +82,7 @@ namespace mis_221_pa_5_aevansmartinez{
             }
             return -1;
         }
-        public void PrintAllTrainers(){
+        public void PrintAllTrainers(){     /*DONE*/
             Console.Clear();
             for (int i = 0; i< trainers.Count(); i++){
                 System.Console.WriteLine(trainers[i].ToString());
