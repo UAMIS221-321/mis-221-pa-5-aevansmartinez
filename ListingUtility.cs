@@ -16,7 +16,6 @@ namespace mis_221_pa_5_aevansmartinez{
             }
             inFile.Close();
         }
-        
         public void AddListing(){ 
             Listing newListing = new Listing();
 
@@ -70,7 +69,7 @@ namespace mis_221_pa_5_aevansmartinez{
                 DeleteListing();
             }
         }
-        public void UpdateStatus(int index, string status){
+        public void UpdateListingStatus(int index, string status){
             listings[index].SetAvaliable(status);
                 Save();
         }

@@ -13,14 +13,7 @@ namespace mis_221_pa_5_aevansmartinez
         private List<string> options;
         private string prompt;
         public Menu(){
-
         }
-        /*
-        public Menu(string Prompt, string[] Options){
-            this.prompt = Prompt;
-            this.options = Options;
-            this.selectedIndex = 0;
-        } */
         public Menu(string Prompt, List<string> Options){
             this.prompt = Prompt;
             this.options = Options;

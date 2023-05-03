@@ -76,7 +76,7 @@ namespace mis_221_pa_5_aevansmartinez{
         }
         public override string ToString(){
             return @$"SESSION ID: {sessionID} | CUSTOMER NAME: {customerName} | CUSTOMER EMAIL: {customerEmail}
-            SESSION DATE: {sessionDate} | TRAINER ID: {trainerID} | TRAINER NAME: {trainerName} | STATUS: {status} | COST: {cost}";
+        SESSION DATE: {sessionDate} | TRAINER ID: {trainerID} | TRAINER NAME: {trainerName} | STATUS: {status} | COST: {cost}";
         }
     }
 }

@@ -44,6 +44,22 @@ namespace mis_221_pa_5_aevansmartinez
             }
             outFile.Close();
         }
+        public void ViewAllTransactions(){
+            UpdateStatusForAll();
+            Console.Clear();
+            for (int i = 0; i< bookings.Count(); i++){
+                System.Console.WriteLine(bookings[i].ToString());
+            }
+        }
+
+        private void UpdateStatusForAll(){
+            foreach(Booking booking in bookings){
+                if (booking.GetSessionDate() <= DateTime.Now){
+                    booking.SetStatus("Completed");
+                }
+            }
+            Save();
+        }
         
         /*FIX ME:private int Find(int ID){
             for (int i = 0; i< bookings.Count(); i++){

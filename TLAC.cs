@@ -10,17 +10,16 @@ namespace mis_221_pa_5_aevansmartinez
     public class TLAC
     {
         static List<Trainer> trainers = new List<Trainer>();
-        static TrainerUtility trainerutility = new TrainerUtility(trainers);
+        static TrainerUtility trainerUtility = new TrainerUtility(trainers);
         static List<Listing> listings = new List<Listing>();
         static ListingUtility listingUtility = new ListingUtility(listings);
         static List<Booking> bookings = new List<Booking>();
         static BookingUtility bookingUtility = new BookingUtility(bookings);
         public void SetUp(){
-            trainerutility.GetAllTrainerssFromFile();
+            trainerUtility.GetAllTrainerssFromFile();
             listingUtility.GetAllListingsFromFile();
             bookingUtility.GetAllSessionsFromFile();
         }
-
         public void RunMainMenu(){
             string tempPrompt = @"                                                                                           
  ______         _         __   _ __          ___      _______                   _         
@@ -54,10 +53,10 @@ Select an option from below.
             Menu trainerMenu = new Menu(tempPrompt, tempOptions);
             int selectedIndex = trainerMenu.Run();
 
-            if (selectedIndex == 0) trainerutility.PrintAllTrainers();
-            else if (selectedIndex == 1) trainerutility.AddTrainer();
-            else if (selectedIndex == 2) trainerutility.EditTrainer();
-            else if (selectedIndex == 3) trainerutility.DeleteTrainer();
+            if (selectedIndex == 0) trainerUtility.PrintAllTrainers();
+            else if (selectedIndex == 1) trainerUtility.AddTrainer();
+            else if (selectedIndex == 2) trainerUtility.EditTrainer();
+            else if (selectedIndex == 3) trainerUtility.DeleteTrainer();
             else RunMainMenu();
 
             WriteLine("Press any key to continue");
@@ -88,17 +87,14 @@ Select an option from below.
             Clear();
 
             string tempPrompt = "What would you like to do:";
-            List<string> tempOptions = new List<string>{"View Available Sessions", "Book a Sesion","Return to Main Menu"};
+            List<string> tempOptions = new List<string>{"View Available Sessions", "View All Transactions", "Book a Session", "Return to Main Menu"};
             
-            //string[] tempOptions = {"View Available Sessions", "Book a Sesion","Return to Main Menu"};
             Menu bookingMenu = new Menu(tempPrompt, tempOptions);
             int selectedIndex = bookingMenu.Run();
 
-            
             if (selectedIndex == 0) listingUtility.ViewAvailableSessions();
-            else if (selectedIndex == 1) {
-                BookSession();
-            }
+            else if (selectedIndex == 1) bookingUtility.ViewAllTransactions();
+            else if (selectedIndex == 2) BookSession();
             else RunMainMenu();
 
             WriteLine("Press any key to continue");
@@ -127,16 +123,11 @@ Select an option from below.
             string tempTrainerName = listings[foundInListing].GetTrainerName();
             int tempCost = listings[foundInListing].GetCost();
 
-            int foundInTrainer = trainerutility.Find(tempTrainerName);
+            int foundInTrainer = trainerUtility.Find(tempTrainerName);
             int tempTrainerID = trainers[foundInTrainer].GetID();
             bookingUtility.AddBooking(tempSessID, tempDate, tempTrainerName, tempTrainerID, tempCost);
             
-
-            
-            listingUtility.UpdateStatus(foundInListing, "Booked");
-            // add a booking for selected session
-            // update status in listing doc
-            
+            listingUtility.UpdateListingStatus(foundInListing, "Booked");
         }
         /* FIX ME*/private void RunReports(){
             Reports report = new Reports(trainers, listings, bookings);
@@ -156,12 +147,9 @@ Select an option from below.
             ReadKey(true);
             RunReports();
         }
-
         private void Exit(){
             WriteLine("Thank you for visiting Train Like A Champion. See you next time!");
             Environment.Exit(0);
         }
-
-
     }
 }
